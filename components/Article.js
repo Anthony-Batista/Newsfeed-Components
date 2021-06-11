@@ -114,3 +114,60 @@ const data = [
   Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
 */
+
+
+function articleMaker(artOb) {
+  
+  const article = document.createElement('div')
+  const title = document.createElement('h3')
+  const date = document.createElement('p')
+  const para1 = document.createElement('p')
+  const para2 = document.createElement('p')
+  const para3 = document.createElement('p')
+  const button = document.createElement('span')
+
+  article.appendChild(title)
+  article.appendChild(date)
+  article.appendChild(para1)
+  article.appendChild(para2)
+  article.appendChild(para3)
+  article.appendChild(button)
+
+  article.classList.add('article')
+  date.classList.add('date')
+  button.classList.add('expandButton')
+
+  title.textContent = artOb.title
+  date.textContent = artOb.date
+  para1.textContent = artOb.firstParagraph
+  para2.textContent = artOb.secondParagraph
+  para3.textContent = artOb.thirdParagraph
+  button.textContent = '>+<'
+
+  button.addEventListener('click', () => {
+    article.classList.toggle('article-open')
+  })
+
+
+  return article
+}
+const articles = document.querySelector('.articles')
+
+
+myArt = {
+  title: 'All about me',
+  date: 'Dec 12th, 1994',
+  firstParagraph: 'This is the year I was born',
+  secondParagraph: 'bunch of words',
+  thirdParagraph: 'even more words'
+}
+
+data.push(myArt)
+
+
+data.forEach(articleObj => {
+  const newArt = articleMaker(articleObj)
+  articles.appendChild(newArt)
+})
+
+
